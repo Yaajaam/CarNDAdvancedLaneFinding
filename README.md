@@ -1,20 +1,21 @@
 ## Advanced Lane Finding
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
-![testImage](./test_images/test1.jpg)
-![testUndistImg](./output_images/testundistimg.png)
-![testwarpImg](./output_images/testwarpimg.png)
-![testwarpRect](./output_images/testwarp_rectImg.png)
-![testLImg](./output_images/testLimg.png)
-![testSImg](./output_images/testSimg.png)
-![testBImg](./output_images/testBimg.png)
-![testLSBImg](./output_images/lsbcombined.png)
-![colorThresh](./output_images/ColorThresholdImages.png)
-![sliding](./output_images/slidingwindow.png)
-![checkerBoard](./output_images/checkerboard.png)
+[image1]: ./examples/undistort_output.png "Undistorted"
+[testImage]: ./test_images/test1.jpg "testImage"
+[testUndistImg]: ./output_images/testundistimg.png "testUndistImg"
+[testwarpImg]: ./output_images/testwarpimg.png "testwarpImg"
+[testwarpRect]: ./output_images/testwarp_rectImg.png "testwarpRect"
+[testLImg]: ./output_images/testLimg.png "testLImg"
+[testSImg]: ./output_images/testSimg.png "testSImg"
+[testBImg]: ./output_images/testBimg.png "testBImg"
+[testLSBImg]: ./output_images/lsbcombined.png "testLSBImg"
+[colorThresh]: ./output_images/ColorThresholdImages.png "colorThresh"
+[sliding]: ./output_images/slidingwindow.png "sliding"
+[checkerBoard]: ./output_images/checkerboard.png "checkerBoard"
  
 
-Project outline :
+Project outline:
 ---
 The goals of this project are the following: 
  Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
