@@ -14,7 +14,7 @@
 ![checkerBoard](./output_images/checkerboard.png)
  
 
-Project outline:
+Project outline :
 ---
 The goals of this project are the following: 
  Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
