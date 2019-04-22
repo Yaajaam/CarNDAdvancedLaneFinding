@@ -3,6 +3,9 @@
 ### You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
 
 ---
+http://petermoran.org/robust-lane-tracking/ - assigning score to detected lanes,  LAB B, HSV value, and HLS lightness channels
+suggested improvements: challenge videos were eye openers.. need a better initial tracking how do u validate first match?
+
 
 **Advanced Lane Finding Project**
 
