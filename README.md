@@ -36,23 +36,23 @@ The goals / steps of this project are the following:
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
 
 ---
-1. Environment Setup
+### 1. Environment Setup
 Usually when developing code for any project, I setup the environemnt. Refer to AdvLaneFindingProjectComplete1.ipynb for Import Packages and DEFINES sections. 
 
-2. Camera Calibration: 
+### 2. Camera Calibration: 
 Udacity provided bunch of images of checkboard pattern and we were required to use cv2.CalibrateCamera. All the images were read and processed in the function getObjnImgPoints which in turn uses cv2.findChessboardCorners to return important points for the checkerboard images. Once the camera is calibrated the result is used to undistort the sample images (or even actual images), using camera calibration coefficients. Result of undistorted image are shown below.  
 
 ![alt text][checkerBoard] 
 
-3. Pipeline: 
+### 3. Pipeline: 
 In very broad terms the pipeline is essentially as shown below. In the project code, I have worked on single images to qualify my code and robustly identify the lanes. As these functions were developed, they were then effectively used for the final video file as well. 
 
-#### a. Apply a distortion correction to raw images
+#### **a. Apply a distortion correction to raw images**
 The first step for the image is to undistort the image. This was done based on the camera calibration coeffients identified in the earlier section. We assumed that the same camera was used to capture the images 
 
 ![alt text][testImage] ![alt text][testUndistImg]
 
-#### b. Perspective transform
+#### **b. Perspective transform**
 Once the undistorted image was obtained, then I created a birdseye view for the same image. This will allow use to look at the road thus making lane identificatoin easier. The trick here is finding the correct points to use for the transform. I used visual aid to decide which points from the undistorted image will be mapped to create the perspective transform. Example shown below
 
 ![alt_text][testwarpRect]
@@ -71,9 +71,10 @@ The birdeye view looks like this:
 ![alt_text][testwarpImg]
 
 Here's a look at all the test image's perspective view: 
+
 ![alt_text][perspective]
 
-#### c. Create a thresholded binary image
+#### **c. Create a thresholded binary image**
 I spent a lot of time in this particular section. The main reason was that I faced a lot of challenged when applying sobel transform. while the magnitude transform gave me okay results for most of the images, test4, test5 failed miserably. I also had doubt on whether I should be applying sobel on the perspective transform image or the undistorted image. All in all, using sobel transform caused my lane detection to go completly wrong. Thus, I decided to seek alternative approaches. I came across various blogs and implementation on using color transform alone to detect the lanes. While it may not be the objective of this assginment, I decided to try out HSL, HSV and LAB transform. Finally after trying a lot of combinations, I realized that  L, S and B images gave me most satisfactory result. Here is a sample of images I looked at to select my color threshold. 
 
 ![alt_text][colorThresh] 
@@ -100,7 +101,7 @@ The output for all the test images is shown below:
 
 ![alt_text][testColorThresh]
 
-#### d. Lane detection
+#### **d. Lane detection** 
 During the course there were two mechanisms taught for detecting the lanes. The idea was identifying the points of the lane within a certain window. After such points are identified, then create a polynomial that fits those points. Once such a polynomial is identified, that can be used for next frames to plot the lanes. However, there are various aspectst to be kept in mind. Robust image filtering being one of them. 
 While my approach is reasonable, I do not believe that it is robust enough. This was made quite evident when I run the same algorithm on the challenge and harder challenge videos.
 
@@ -119,7 +120,7 @@ Once the lanes and the polynomials are established, the next frames do not need 
 ![alt_text][polyfit]
 
 
-#### e. Determine curvature and vehicle offset
+#### ** e. Determine curvature and vehicle offset** 
 
 
 #### Overlay lane on orignal image
