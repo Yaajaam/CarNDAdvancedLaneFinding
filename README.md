@@ -17,6 +17,9 @@
 [testColorThresh]: ./output_images/colorThresholdImages_test.png "testColorThresh"  
 [hist]: ./output_images/testhist.png "hist"
 [polyfit]: ./output_images/testployplot.png "polyfit"
+[printdata]: ./output_images/testLanemark_data.png "printdata"
+[lanemarking]: ./output_images/lanemarking.png "lanemarking"
+
 
 The Project
 ---
@@ -120,12 +123,35 @@ Once the lanes and the polynomials are established, the next frames do not need 
 ![alt_text][polyfit]
 
 
-#### ** e. Determine curvature and vehicle offset** 
+#### **e. Overlay lane on orignal image**
+
+Once the lanes are identified, we need to overlay the lane data on the original image. Thus, we need to warp the image back to real world view. The function that does this is: plotLinesOnFrame
+The output image looks like this: 
+
+![alt_text][lanemarking]
+
+#### ** f. Determine curvature and vehicle offset** 
+
+The function that is used to calculate the radius of the lane is: measure_curvature_real
+Internally it used the fitted polynomial to compute the radius. The reference for this calculation is explained [here](https://www.intmath.com/applications-differentiation/8-radius-curvature.php). 
+
+The formula below calcuates the radius at pixel level, but since we want to know the real world radius, we need to multiply the output with ym_per_pix transform. This is value is (as documented in the code), meters per pixes in y dimension. 
+
+curveRadius = ((1 + (2*left_fit[0]*y_eval*ym_per_pix + left_fit[1])^2)^1.5)/np.absolute(2*left_fit[0]) 
+
+Similarly, the vehicle offset from the center is calculated based on certain assumptions. The main assumption is that the camera is mounted exactly at the center of the vehicle. Second, the image center is basically where the center of the lane is located. 
+
+The function used to compute this information is: CalcVehLaneOffset
+The polynomial is used to compute the X and Y intercepts. These are the points located on the bottom of the image. Thus, we know where the left and right lanes intersect the bottom of the image (or the location of the vehicle). Now, half of these two points is where the center of the lane is. Measured with respect to that, the half of the image will tell us the offset of the vehicle from the lane center. 
 
 
-#### Overlay lane on orignal image
+#### **g. Display information on orignal image**
 
-#### Display information on orignal image
+To display this information on the image, the function used is: printVehRoadData
+
+The output of this function looks like this: 
+
+![alt_text][printdata]
 
 
 The images for camera calibration are stored in the folder called `camera_cal`.  The images in `test_images` are for testing your pipeline on single frames.  If you want to extract more test images from the videos, you can simply use an image writing method like `cv2.imwrite()`, i.e., you can read the video in frame by frame as usual, and for frames you want to save for later you can write to an image file.  
