@@ -2,7 +2,7 @@
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
 [image1]: ./examples/undistort_output.png "Undistorted"
-[testImage]: ./output_images/test1Img.png "testImage" 
+[testImage]: ./output_images/testimage.png "testImage" 
 [testUndistImg]: ./output_images/testundistimg.png "testUndistImg"
 [testwarpImg]: ./output_images/testwarpimg.png "testwarpImg"
 [testwarpRect]: ./output_images/testwarp_rectImg.png "testwarpRect"
@@ -130,7 +130,7 @@ The output image looks like this:
 
 ![alt_text][lanemarking]
 
-#### ** f. Determine curvature and vehicle offset** 
+#### **f. Determine curvature and vehicle offset** 
 
 The function that is used to calculate the radius of the lane is: measure_curvature_real
 Internally it used the fitted polynomial to compute the radius. The reference for this calculation is explained [here](https://www.intmath.com/applications-differentiation/8-radius-curvature.php). 
@@ -166,5 +166,6 @@ The project output video can be found [here](https://github.com/Yaajaam/CarNDAdv
 ### 5. Discussion: 
 
 I faced many issues while doing this project. As discussed in the ealier section, the biggest issue I faced was robustness. This issue is evident if my algorithm is used for the challenge and harder challenge videos. I research a lot as to why my code is failing on those videos. There are couple blogs those talk about adding robustness to lane detection. 
+
 [Here](http://petermoran.org/robust-lane-tracking/) is an example of one such blog that I ran into. The author talks about assigning scores to the detected lanes. 
 Furthermore, I believe that applying sobel on original image and then transforming that to perspective view is a better approach. This is because that's really where sobel algorithm shines. On a perspective image, the sobel fails miserably, at least that's what I have learned. 
