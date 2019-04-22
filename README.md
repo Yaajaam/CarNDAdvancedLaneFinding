@@ -47,7 +47,7 @@ Udacity provided bunch of images of checkboard pattern and we were required to u
 
 ![alt text][checkerBoard] 
 
-### 3. Pipeline: 
+### 3. Pipeline [Test Images]: 
 In very broad terms the pipeline is essentially as shown below. In the project code, I have worked on single images to qualify my code and robustly identify the lanes. As these functions were developed, they were then effectively used for the final video file as well. 
 
 #### **a. Apply a distortion correction to raw images**
@@ -153,16 +153,15 @@ The output of this function looks like this:
 
 ![alt_text][printdata]
 
+### 4. Pipeline [Video]: 
 
-The images for camera calibration are stored in the folder called `camera_cal`.  The images in `test_images` are for testing your pipeline on single frames.  If you want to extract more test images from the videos, you can simply use an image writing method like `cv2.imwrite()`, i.e., you can read the video in frame by frame as usual, and for frames you want to save for later you can write to an image file.  
+Video is nothing but just of series of images stringed together. So, essentially we are processing an image of each frame. So, the pipeline that was described in previous section (section 3) is what is leveraged for processing the video. The pipeline function that processes the video is: ProcessVideoFrame. 
 
-To help the reviewer examine your work, please save examples of the output from each stage of your pipeline in the folder called `output_images`, and include a description in your writeup for the project of what each image shows.    The video called `project_video.mp4` is the video your pipeline should work well on.  
+This funciton processes each frame to detect the lanes and then will plot the lanes on orignal image and print the lane data on each frame. 
+However, there is a small trick that needs to be played. While it is easy to process each image and see the output on the image, when processing a video, how do we know if the data is being processed correctly? We add some robustness techniques to the video processing. If you look at the function "ProcessVideoFrame", you will realize that we are using a class to store the lane information that will be used for the next frame processing. However, we keep a track of multiple such lanes, because the road conditions and lane curvature can change. So, by using the average of previous frames, we are able to add robustness and reduce the frame over frame changes. Otherwise, the polynomial identified in frame 1, will most likely not fit the data by frame number 10 or something similar. This operation can be followed in the function: UpdateLineInfo
 
-The `challenge_video.mp4` video is an extra (and optional) challenge for you if you want to test your pipeline under somewhat trickier conditions.  The `harder_challenge.mp4` video is another optional challenge and is brutal!
+### 5. Discussion: 
 
-If you're feeling ambitious (again, totally optional though), don't stop there!  We encourage you to go out and take video of your own, calibrate your camera and show us how you would implement this project from scratch!
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
-
-"# CarNDAdvancedLaneFinding" 
+I faced many issues while doing this project. As discussed in the ealier section, the biggest issue I faced was robustness. This issue is evident if my algorithm is used for the challenge and harder challenge videos. I research a lot as to why my code is failing on those videos. There are couple blogs those talk about adding robustness to lane detection. 
+[Here](http://petermoran.org/robust-lane-tracking/) is an example of one such blog that I ran into. The author talks about assigning scores to the detected lanes. 
+Furthermore, I believe that applying sobel on original image and then transforming that to perspective view is a better approach. This is because that's really where sobel algorithm shines. On a perspective image, the sobel fails miserably, at least that's what I have learned. 
