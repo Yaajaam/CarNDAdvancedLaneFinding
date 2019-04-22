@@ -37,9 +37,30 @@ The goals / steps of this project are the following:
 Usually when developing code for any project, I setup the environemnt. Refer to AdvLaneFindingProjectComplete1.ipynb for Import Packages and DEFINES sections. 
 
 2. Camera Calibration: 
-Udacity provided bunch of images of checkboard pattern and we were required to use cv2.CalibrateCamera. All the images were read and processed in the function getObjnImgPoints which in turn uses cv2.findChessboardCorners to return important points for the checkerboard images. Once the camera is calibrated the result is used to undistort the sample images (or even actual images). Result of undistorted image are shown below.  
+Udacity provided bunch of images of checkboard pattern and we were required to use cv2.CalibrateCamera. All the images were read and processed in the function getObjnImgPoints which in turn uses cv2.findChessboardCorners to return important points for the checkerboard images. Once the camera is calibrated the result is used to undistort the sample images (or even actual images), using camera calibration coefficients. Result of undistorted image are shown below.  
 
 ![alt text][checkerBoard] 
+
+3. Pipeline: 
+In very broad terms the pipeline is essentially as shown below. In the project code, I have worked on single images to qualify my code and robustly identify the lanes. As these functions were developed, they were then effectively used for the final video file as well. 
+
+##### Apply a distortion correction to raw images
+The first step for the image is to undistort the image. This was done based on the camera calibration coeffients identified in the earlier section. We assumed that the same camera was used to capture the images 
+
+![alt text][testImage] ![alt text][testUndistImg]
+
+##### Create a thresholded binary image
+
+##### Perspective transform
+
+##### Lane detection
+
+##### Determine curvature and vehicle offset
+
+##### Overlay lane on orignal image
+
+##### Display information on orignal image
+
 
 The images for camera calibration are stored in the folder called `camera_cal`.  The images in `test_images` are for testing your pipeline on single frames.  If you want to extract more test images from the videos, you can simply use an image writing method like `cv2.imwrite()`, i.e., you can read the video in frame by frame as usual, and for frames you want to save for later you can write to an image file.  
 
