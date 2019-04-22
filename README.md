@@ -79,11 +79,13 @@ I spent a lot of time in this particular section. The main reason was that I fac
 
 My final selection was:
 L threshold from HSL transform
-S threshold from HSL transform
-B threshold from LAB transform
-These are shown below. 
+![alt_text][testLImg]
 
-![alt_text][testLImg]![alt_text][testSImg]![alt_text][testBImg]
+S threshold from HSL transform
+![alt_text][testSImg]
+
+B threshold from LAB transform
+![alt_text][testBImg]
 
 The combined threshold image for test image is shown below: 
 ![alt_text][testLSBImg]
