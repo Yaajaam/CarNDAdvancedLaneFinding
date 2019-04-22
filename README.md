@@ -14,7 +14,7 @@
 [sliding]: ./output_images/slidingwindow.png "sliding"
 [checkerBoard]: ./output_images/checkerboard.png "checkerBoard"
 [perspective]: ./output_images/perspectiveImgs.png "perspective"
-  
+[testColorThresh]: ./output_images/colorThresholdImages_test.png "testColorThresh"  
 
 The Project
 ---
@@ -76,17 +76,16 @@ I spent a lot of time in this particular section. The main reason was that I fac
 
 ![alt_text][colorThresh] 
 
-
 My final selection was:
-L threshold from HSL transform 
+L channel from HSL transform 
 
 ![alt_text][testLImg]
 
-S threshold from HSL transform
+S channel from HSL transform
 
 ![alt_text][testSImg]
 
-B threshold from LAB transform
+B channel from LAB transform
 
 ![alt_text][testBImg]
 
@@ -95,6 +94,9 @@ The combined threshold image for test image is shown below:
 ![alt_text][testLSBImg]
 
 
+The output for all the test images is shown below: 
+
+![alt_text][testColorThresh]
 
 #### Lane detection
 
