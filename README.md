@@ -7,7 +7,7 @@
 [testwarpImg]: ./output_images/testwarpimg.png "testwarpImg"
 [testwarpRect]: ./output_images/testwarp_rectImg.png "testwarpRect"
 [testLImg]: ./output_images/testLimg.png "testLImg"
-[testSImg]: ./output_images/testSimg.png "testSImg"
+[testSImg]: ./output_images/testSImg.png "testSImg"
 [testBImg]: ./output_images/testBimg.png "testBImg"
 [testLSBImg]: ./output_images/lsbcombined.png "testLSBImg"
 [colorThresh]: ./output_images/ColorThresholdImages.png "colorThresh"
