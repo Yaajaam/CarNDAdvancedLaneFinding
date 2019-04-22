@@ -160,6 +160,9 @@ Video is nothing but just of series of images stringed together. So, essentially
 This funciton processes each frame to detect the lanes and then will plot the lanes on orignal image and print the lane data on each frame. 
 However, there is a small trick that needs to be played. While it is easy to process each image and see the output on the image, when processing a video, how do we know if the data is being processed correctly? We add some robustness techniques to the video processing. If you look at the function "ProcessVideoFrame", you will realize that we are using a class to store the lane information that will be used for the next frame processing. However, we keep a track of multiple such lanes, because the road conditions and lane curvature can change. So, by using the average of previous frames, we are able to add robustness and reduce the frame over frame changes. Otherwise, the polynomial identified in frame 1, will most likely not fit the data by frame number 10 or something similar. This operation can be followed in the function: UpdateLineInfo
 
+The project output video can be found [here](https://github.com/Yaajaam/CarNDAdvancedLaneFinding/blob/master/project_video_output.mp4). 
+
+
 ### 5. Discussion: 
 
 I faced many issues while doing this project. As discussed in the ealier section, the biggest issue I faced was robustness. This issue is evident if my algorithm is used for the challenge and harder challenge videos. I research a lot as to why my code is failing on those videos. There are couple blogs those talk about adding robustness to lane detection. 
