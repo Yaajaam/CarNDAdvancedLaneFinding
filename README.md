@@ -15,6 +15,8 @@
 [checkerBoard]: ./output_images/checkerboard.png "checkerBoard"
 [perspective]: ./output_images/perspectiveImgs.png "perspective"
 [testColorThresh]: ./output_images/colorThresholdImages_test.png "testColorThresh"  
+[hist]: ./output_images/testhist.png "hist"
+[polyfit]: ./output_images/testployplot.png "polyfit"
 
 The Project
 ---
@@ -98,9 +100,27 @@ The output for all the test images is shown below:
 
 ![alt_text][testColorThresh]
 
-#### Lane detection
+#### d. Lane detection
+During the course there were two mechanisms taught for detecting the lanes. The idea was identifying the points of the lane within a certain window. After such points are identified, then create a polynomial that fits those points. Once such a polynomial is identified, that can be used for next frames to plot the lanes. However, there are various aspectst to be kept in mind. Robust image filtering being one of them. 
+While my approach is reasonable, I do not believe that it is robust enough. This was made quite evident when I run the same algorithm on the challenge and harder challenge videos.
 
-#### Determine curvature and vehicle offset
+The identification of the lanes was first done by a technique called as sliding windows. The idea is that once lanes starting points have been identified, then the image is divided into multiple smaller areas (windows) and lanes points are searched within those windows. These window slide around based on where the lanes points appear. 
+The functions used for this operation are: sliding_window_polyfit 
+Here's what it looks like: 
+
+![alt_text][sliding]
+
+How does one know where to look for the lane? Well, since the camera is mounted in the center of the vehicle, in the perspective image, if we take the histogram of the image, peaks are observed where the lanes appear. This gives use the starting point of the lanes. Here's what the histogram for test image looks like: 
+
+![alt_text][hist]
+
+Once the lanes and the polynomials are established, the next frames do not need to use the sliding window approach. We can use the polynomial fit to identify points along the curve within a certain margin and modify the polynomial based on new findings. This is shown in the image below: 
+
+![alt_text][polyfit]
+
+
+#### e. Determine curvature and vehicle offset
+
 
 #### Overlay lane on orignal image
 
