@@ -13,6 +13,7 @@
 [colorThresh]: ./output_images/ColorThresholdImages.png "colorThresh"
 [sliding]: ./output_images/slidingwindow.png "sliding"
 [checkerBoard]: ./output_images/checkerboard.png "checkerBoard"
+[perspective]: ./output_images/perspectiveImgs.png "perspective"
  
 
 The Project
@@ -52,7 +53,7 @@ The first step for the image is to undistort the image. This was done based on t
 #### b. Perspective transform
 Once the undistorted image was obtained, then I created a birdseye view for the same image. This will allow use to look at the road thus making lane identificatoin easier. The trick here is finding the correct points to use for the transform. I used visual aid to decide which points from the undistorted image will be mapped to create the perspective transform. Example shown below
 
-![alt_test][testwarpRect]
+![alt_text][testwarpRect]
 
 These points are as follows: 
 
@@ -63,9 +64,30 @@ These points are as follows:
 |  250, 700     | 450, 720      |
 | 1100, 700     | 830, 720      |
 
+The birdeye view looks like this: 
 
-#### Create a thresholded binary image
-I spent a lot of time in this particular 
+![alt_text][testwarpImg]
+
+Here's a look at all the test image's perspective view: 
+![alt_text][perspective]
+
+#### c. Create a thresholded binary image
+I spent a lot of time in this particular section. The main reason was that I faced a lot of challenged when applying sobel transform. while the magnitude transform gave me okay results for most of the images, test4, test5 failed miserably. I also had doubt on whether I should be applying sobel on the perspective transform image or the undistorted image. All in all, using sobel transform caused my lane detection to go completly wrong. Thus, I decided to seek alternative approaches. I came across various blogs and implementation on using color transform alone to detect the lanes. While it may not be the objective of this assginment, I decided to try out HSL, HSV and LAB transform. Finally after trying a lot of combinations, I realized that  L, S and B images gave me most satisfactory result. Here is a sample of images I looked at to select my color threshold. 
+
+![alt_text][colorThresh]
+
+
+My final selection was:
+L threshold from HSL transform
+S threshold from HSL transform
+B threshold from LAB transform
+These are shown below. 
+
+![alt_text][testLImg]![alt_text][testSImg]![alt_text][testBImg]
+
+The combined threshold image for test image is shown below: 
+![alt_text][testLSBImg]
+
 
 
 #### Lane detection
