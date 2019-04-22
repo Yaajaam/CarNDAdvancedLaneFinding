@@ -14,7 +14,7 @@
 [sliding]: ./output_images/slidingwindow.png "sliding"
 [checkerBoard]: ./output_images/checkerboard.png "checkerBoard"
 [perspective]: ./output_images/perspectiveImgs.png "perspective"
- 
+  
 
 The Project
 ---
